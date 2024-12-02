@@ -1,0 +1,12 @@
+[package]
+name = "nano-ai-example"
+version = "0.0.1"
+edition = "2021"
+
+[dependencies]
+log = "0.4.22"
+nano-ai = { path = "../../" }
+wasm-bindgen-futures = "0.4.47"
+wasm-logger = "0.2.0"
+web-sys = "0.3.74"
+yew = { version = "0.21.0", features = ["csr"] }
