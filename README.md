@@ -8,6 +8,7 @@
 [![Docs.rs](https://docs.rs/nano-ai/badge.svg)](https://docs.rs/nano-ai/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/wiseaidev)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/21f0f284-a363-42a9-b72a-3a9c82f26f00/deploy-status)](https://nano-wasm.netlify.app/)
 
 ![banner](https://github.com/user-attachments/assets/87956e6c-9c9f-428a-8bb6-0b6221b8f6a6)
 
