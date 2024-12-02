@@ -16,6 +16,8 @@
 
 ## 🌌 Overview
 
+<video src="https://github.com/user-attachments/assets/a57552af-5fe2-4cd4-ad3e-40f8ab264711"></video>
+
 `nano-ai` is a lightweight and efficient AI adapter for integrating Gemini Nano AI model into WASM frameworks.
 
 ## 🚀 Features
