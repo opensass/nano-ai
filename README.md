@@ -19,13 +19,16 @@
 
 ## 🚀 Features
 
-| Method                  | Supported | Tested |
-|-------------------------|-----------|--------|
-| `get_capabilities`         | ✅        | ✅     |
-| `create_session`         | ✅        | ✅     |
-| `send_prompt`          | ✅        | ✅     |
-| `stream_prompt`        | ✅        | ⬜     |
-| `destroy_session`     | ✅        | ✅     |
+| Method                  | Supported | Tested | Windows Chrome Canary | Linux Chrome Canary |
+|-------------------------|-----------|--------|-----------------------|---------------------|
+| `get_capabilities`      | ✅        | ✅     | ✅                    | ✅                  |
+| `create_session`        | ✅        | ✅     | ✅                    | ✅                  |
+| `send_prompt`           | ✅        | ✅     | ✅                    | ❌                  |
+| `stream_prompt`         | ✅        | ⬜     | ✅                    | ❌                  |
+| `destroy_session`       | ✅        | ✅     | ✅                    | ✅                  |
+
+> [!WARNING]  
+> This crate has been fully tested only on [Chrome Canary](https://www.google.com/chrome/canary/) running on a Windows machine. Compatibility on Linux Chrome Canary is limited, as only `get_capabilities`, `create_session`, and `destroy_session` methods are confirmed to work. 
 
 ## 🌐 WASM Frameworks
 
