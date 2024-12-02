@@ -106,11 +106,12 @@ pub fn ChatComponent() -> Html {
     };
 
     let on_send_prompt = {
-        let chat_history = chat_history.clone();
         let session_error = session_error.clone();
         let input_text = input_text.clone();
+        let chat_history = chat_history.clone();
 
-        Callback::from(move |_: MouseEvent| {
+        Callback::from(move |evt: SubmitEvent| {
+            evt.prevent_default();
             if input_text.is_empty() {
                 return;
             }
@@ -128,17 +129,23 @@ pub fn ChatComponent() -> Html {
             input_text.set(String::new());
 
             spawn_local(async move {
-                let client = NanoAI::new();
-                match client.send_prompt(&prompt_text).await {
-                    Ok(response) => {
-                        chat_history.set({
-                            let mut history = (*chat_history).clone();
-                            history.push((false, response));
-                            history
-                        });
-                        session_error.set(None);
+                let chat_history = chat_history.clone();
+                let mut client = NanoAI::new();
+                match client.create_session(None).await {
+                    Ok(_) => match client.send_prompt(&prompt_text).await {
+                        Ok(response) => {
+                            chat_history.set({
+                                let mut history = (*chat_history).clone();
+                                history.push((false, response));
+                                history
+                            });
+                            session_error.set(None);
+                        }
+                        Err(err) => session_error.set(Some(format!("❌ Prompt failed: {}", err))),
+                    },
+                    Err(err) => {
+                        session_error.set(Some(err.to_string()));
                     }
-                    Err(err) => session_error.set(Some(format!("❌ Prompt failed: {}", err))),
                 }
             });
         })
@@ -159,7 +166,7 @@ pub fn ChatComponent() -> Html {
     html! {
         <div class="chat-container">
             { chat_display }
-            <div class="chat-input-wrapper">
+            <form class="chat-input-wrapper" onsubmit={on_send_prompt} >
                 <input
                     type="text"
                     placeholder="💬 Type your message..."
@@ -168,8 +175,8 @@ pub fn ChatComponent() -> Html {
                     oninput={on_input_change}
                     class="chat-input"
                 />
-                <button onclick={on_send_prompt} class="send-btn">{ "➤" }</button>
-            </div>
+                <button class="send-btn">{ "➤" }</button>
+            </form>
         </div>
     }
 }
